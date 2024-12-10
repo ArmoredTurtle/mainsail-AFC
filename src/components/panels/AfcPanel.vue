@@ -19,7 +19,6 @@
                         <v-list-item>
                             <v-radio-group v-model="selectedStyle">
                                 <v-radio label="Style 1" :value="1" @change="saveStyleIndex(1)"></v-radio>
-                                <v-radio label="Style 2" :value="0" @change="saveStyleIndex(0)"></v-radio>
                             </v-radio-group>
                         </v-list-item>
                     </v-list>
@@ -98,14 +97,8 @@
                                         <select :name="'map-' +spool.laneName"
                                                 class="afclist"
                                                 @change="handleMapChange($event, spool)">
-
                                             <template v-for="option in mapList" v-bind:value="option">
-                                                <template v-if="spool.map === ''">
-                                                    <option :value="None">
-                                                        NONE
-                                                    </option>
-                                                </template>
-                                                <template v-else-if="option === spool.map">
+                                                <template v-if="option === spool.map">
                                                     <option :value="option" selected>
                                                         {{ option }}
                                                     </option>
@@ -442,10 +435,9 @@ export default class AfcPanel extends Mixins(BaseMixin) {
 
     .status-wrapper {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
+        float: left;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
         border-bottom: 1px solid #ccc;
         padding-bottom: 10px;
         margin-bottom: 15px;
